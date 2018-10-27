@@ -87,5 +87,17 @@ public class TestingGrounds {
         LOG.info("Изменённый массив: {}", updatedValues);
     }
 
+    @Test
+    public void displaysCountersForEachElement() {
+        LOG.info("6. Подсчитать количество значений для каждого элемента массива {}", victim);
+
+        String result = getValuesStream()
+                        .distinct()
+                        .mapToObj(x-> x + " -> " + getValuesStream().filter(y->y==x).count())
+                        .collect(Collectors.joining(System.lineSeparator()));
+
+        LOG.info("Вхождений элементов в массив: {}{}", System.lineSeparator(), result);
+    }
+
 
 }
